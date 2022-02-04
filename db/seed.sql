@@ -3,22 +3,22 @@ use employees;
 INSERT INTO department
     (name)
 VALUES
-    ('HR'),
+    ('Sales'),
     ('Programming'),
     ('Finance'),
-    ('Sales');
+    ('HR');
 
 INSERT INTO role
     (title, salary, department_id)
 VALUES
     ('Sales Lead', 90000, 1),
     ('Salesperson', 70000, 1),
-    ('Lead Engineer', 160000, 2),
-    ('Software Engineer', 140000, 2),
+    ('Lead Programmer', 160000, 2),
+    ('Software Programmer', 140000, 2),
     ('Account Manager', 140000, 3),
     ('Accountant', 120000, 3),
-    ('Legal Team Lead', 250000, 4),
-    ('Lawyer', 190000, 4);
+    ('HR Head', 120000, 4),
+    ('HR Assistant', 90000, 4);
 
 INSERT INTO employee
     (first_name, last_name, role_id, manager_id)
