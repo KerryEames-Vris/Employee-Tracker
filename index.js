@@ -235,9 +235,10 @@ function removeEmployee() {
 function updateEmployeeRole() {
   findAllEmployees().then(([rows]) => {
     let employees = rows;
-    const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-      name: `${first_name} ${last_name}`,
-      value: id,
+    console.log(employees)
+    const employeeChoices = employees.map((employee) => ({
+      name: `${employee.first_name} ${employee.last_name}`,
+      value: employee.id,
     }));
 
     inquirer.prompt([
@@ -264,7 +265,7 @@ function updateEmployeeRole() {
             choices: roleChoices,
           },
         ])
-          .then((res) => updateEmployeeRole(employeeId, res.roleId))
+          .then((res) => updatedEmployeeRole(employeeId, res.roleId))
           .then(() => console.log("Updated employee's role"))
           .then(() => loadMainPrompts());
       });
@@ -529,7 +530,7 @@ function removeEmployee(employeeId) {
     .query("DELETE FROM employee WHERE id = ?", employeeId);
 }
 
-function updateEmployeeRole(employeeId, roleId) {
+function updatedEmployeeRole(employeeId, roleId) {
   return db
     .query("UPDATE employee SET role_id = ? WHERE id = ?", [
       roleId,
@@ -553,7 +554,7 @@ function findAllRoles() {
 }
 
 function createRole(role) {
-  return this.connection.promise().query("INSERT INTO role SET ?", role);
+  return db.query("INSERT INTO role SET ?", role);
 }
 
 function removeRole(roleId) {
